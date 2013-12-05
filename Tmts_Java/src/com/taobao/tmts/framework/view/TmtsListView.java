@@ -47,6 +47,7 @@ public class TmtsListView extends TmtsAbsListView {
 		super(inst, listView);
 		this.listView = listView;
 	}
+	
 
 	/**
 	 * Get listview's child view by index
@@ -124,7 +125,7 @@ public class TmtsListView extends TmtsAbsListView {
 
 			@Override
 			public void run() {
-				
+				listView.requestFocusFromTouch();
 				if (line > max) {
 					Log.i(LOG_TAG, "line > max, scrollListToLine(" + max + ")");
 					listView.setSelection(max);

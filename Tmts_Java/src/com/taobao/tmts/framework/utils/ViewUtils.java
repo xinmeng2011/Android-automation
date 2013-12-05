@@ -524,8 +524,10 @@ public class ViewUtils {
 		Field viewsField;
 		Field instanceField;
 		try {
-			viewsField = windowManager.getDeclaredField("mViews");
+			Field[] testFields = windowManager.getDeclaredFields();
 			instanceField = windowManager.getDeclaredField("mWindowManager");
+			viewsField = windowManager.getDeclaredField("mViews");
+			//instanceField = windowManager.getDeclaredField("mWindowManager");
 			viewsField.setAccessible(true);
 			instanceField.setAccessible(true);
 			Object instance = instanceField.get(null);

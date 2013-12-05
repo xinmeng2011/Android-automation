@@ -21,6 +21,7 @@ public class ListViewActivityTest extends TmtsTestCase {
 		assertEquals("Item3", tmtsTextView.getText());
 	}
 	
+
 	public void testScrollListToLine() throws Exception {
 		getTmtsView("btn_listview_activity", TmtsButton.class).doClick();
 		TmtsListView tmtsListView = getTmtsListView("my_listview");
@@ -31,7 +32,7 @@ public class ListViewActivityTest extends TmtsTestCase {
 	public void testSmoothScrollToPosition() throws Exception {
 		getTmtsView("btn_listview_activity", TmtsButton.class).doClick();
 		TmtsListView tmtsListView = getTmtsListView("my_listview");
-		tmtsListView.smoothScrollToPosition(200);
+		tmtsListView.smoothScrollToPosition(200); // this function does not change selected status
 		assertEquals(99, tmtsListView.getSelcetedItemPosition());
 	}
 

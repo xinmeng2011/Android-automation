@@ -364,6 +364,11 @@ public class TmtsTestCase extends ActivityInstrumentationTestCase2 {
 	public TmtsButton findTmtsButton(String text) throws InterruptedException {
 		return tmts.findTmtsButton(text);
 	}
+	
+	public <T extends TmtsView> void findtest(Class<T>  text)  {
+		
+		return ;
+	}
 
 	/**
 	 * Return a {@link TmtsProgressBar} by the given name.
