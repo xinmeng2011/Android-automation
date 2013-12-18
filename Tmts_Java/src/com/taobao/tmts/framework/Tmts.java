@@ -677,7 +677,7 @@ public class Tmts {
 	
 	TmtsTextView findTmtsTextView(String text) {
 		Log.i(LOG_TAG, "findTmtsTextView: " + text);
-		if (findButton(text) != null) {
+		if (findTextView(text) != null) {
 			Log.i(LOG_TAG, "findTmtsTextView: " + text + " succeed");
 			return new TmtsTextView(inst, findTextView(text));
 		}

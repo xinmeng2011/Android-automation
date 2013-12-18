@@ -42,6 +42,7 @@ public class ViewUtils {
 	private final ActivityUtils activityUtils;
 	private final Sleeper sleeper;
 
+	private static int mCurrentapiVersion=android.os.Build.VERSION.SDK_INT;
 	/**
 	 * Constructs this object.
 	 * 
@@ -503,7 +504,11 @@ public class ViewUtils {
 	private static Class<?> windowManager;
 	static {
 		try {
-			windowManager = Class.forName("android.view.WindowManagerImpl");
+			if(mCurrentapiVersion < 17){
+				windowManager = Class.forName("android.view.WindowManagerImpl");
+			}else{
+				windowManager = Class.forName("android.view.WindowManagerGlobal");
+			}
 
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
@@ -524,7 +529,12 @@ public class ViewUtils {
 		Field viewsField;
 		Field instanceField;
 		try {
-			instanceField = windowManager.getDeclaredField("mWindowManager");
+			Field[] fs =windowManager.getFields();
+			if(mCurrentapiVersion <17){
+				instanceField = windowManager.getDeclaredField("mWindowManager");
+			}else{
+				instanceField = windowManager.getDeclaredField("sDefaultWindowManager");
+			}
 			viewsField = windowManager.getDeclaredField("mViews");
 			//instanceField = windowManager.getDeclaredField("mWindowManager");
 			viewsField.setAccessible(true);
