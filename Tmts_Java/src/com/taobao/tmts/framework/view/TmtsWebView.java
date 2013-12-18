@@ -116,6 +116,7 @@ public class TmtsWebView {
 	public String getTitle() {
 		return webView.getTitle();
 	}
+	
 	public JavascriptInterface getInterface(){
 		return this.jInterface;
 	}

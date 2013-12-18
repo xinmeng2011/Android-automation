@@ -674,6 +674,17 @@ public class Tmts {
 		Log.i(LOG_TAG, "findTmtsButton: " + text + " failed, return null");
 		return null;
 	}
+	
+	TmtsTextView findTmtsTextView(String text) {
+		Log.i(LOG_TAG, "findTmtsTextView: " + text);
+		if (findButton(text) != null) {
+			Log.i(LOG_TAG, "findTmtsTextView: " + text + " succeed");
+			return new TmtsTextView(inst, findTextView(text));
+		}
+		Log.i(LOG_TAG, "findTmtsTextView: " + text + " failed, return null");
+		return null;
+	}
+	
 
 	/**
 	 * Return a {@link View} by the given name.
@@ -744,6 +755,30 @@ public class Tmts {
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
+	private TextView findTextView(String text) {
+		final long startTime = System.currentTimeMillis();
+
+		while (System.currentTimeMillis() < startTime
+				+ Constants.FIND_VIEW_TIME_OUT) {
+			ArrayList<View> all = viewUtils.getAllViews(true);
+			for (int i = 0; i < all.size(); i++) {
+				if (all.get(i) instanceof TextView) {
+					if (((TextView) all.get(i)).getText().toString()
+							.equalsIgnoreCase(text)) {
+						return (TextView) all.get(i);
+					}
+				}
+			}
+			try {
+				Thread.sleep(Constants.RETRY_TIME);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		TmtsLog.e(LOG_TAG, "textview which text is " + text + " does not found ");
+		return null;
+	}
 	/**
 	 * Return the {@link View} by the id.
 	 * 

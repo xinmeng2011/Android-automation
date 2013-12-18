@@ -365,6 +365,10 @@ public class TmtsTestCase extends ActivityInstrumentationTestCase2 {
 		return tmts.findTmtsButton(text);
 	}
 	
+	public TmtsTextView findTmtsTextView(String text) throws InterruptedException{
+		return tmts.findTmtsTextView(text);
+	}
+	
 	public <T extends TmtsView> void findtest(Class<T>  text)  {
 		
 		return ;
