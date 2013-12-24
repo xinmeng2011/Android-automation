@@ -530,8 +530,12 @@ public class ViewUtils {
 		Field instanceField;
 		try {
 			Field[] fs =windowManager.getFields();
-			if(mCurrentapiVersion <17){
-				instanceField = windowManager.getDeclaredField("mWindowManager");
+			if(mCurrentapiVersion < 17){
+				if(mCurrentapiVersion == 16){
+					instanceField = windowManager.getDeclaredField("sWindowManager");
+				}else{
+					instanceField = windowManager.getDeclaredField("mWindowManager");
+				}
 			}else{
 				instanceField = windowManager.getDeclaredField("sDefaultWindowManager");
 			}
